@@ -111,3 +111,5 @@ D:\Projectts_2021\Interview_Project\CSG_UI_MVC\CSG_UI_MVC\bin\Debug\netcoreapp3.
 D:\Projectts_2021\Interview_Project\CSG_UI_MVC\CSG_UI_MVC\obj\Debug\netcoreapp3.1\CSG_UI_MVC.csprojAssemblyReference.cache
 D:\Projectts_2021\Interview_Project\CSG_UI_MVC\CSG_UI_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\create.cshtml.g.cs
 D:\Projectts_2021\Interview_Project\CSG_UI_MVC\CSG_UI_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs
+D:\Projectts_2021\Interview_Project\CSG_UI_MVC\CSG_UI_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Delete.cshtml.g.cs
+D:\Projectts_2021\Interview_Project\CSG_UI_MVC\CSG_UI_MVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Details.cshtml.g.cs

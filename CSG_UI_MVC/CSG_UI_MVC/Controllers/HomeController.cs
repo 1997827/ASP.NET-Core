@@ -42,6 +42,13 @@ namespace CSG_UI_MVC.Controllers
         }
 
 
+        public ActionResult create()
+        {
+            return View();
+        }
+
+
+
         [HttpPost]
         public ActionResult create(Status data)
         {
@@ -62,16 +69,15 @@ namespace CSG_UI_MVC.Controllers
 
             return View(data);
         }
-
-
-        public ActionResult Edit(string id)
+        
+        public ActionResult Edit(string  id)
         {
-            Status data = null;
+            Status data = new Status();
 
             using (var client = new HttpClient())
             {
 
-                var responseTask = client.GetAsync("https://localhost:44391/api/employee/editemployee?id=" + id.ToString());
+                var responseTask = client.GetAsync("https://localhost:44391/api/Employee/GetEmployeeId?id=" +id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -85,12 +91,83 @@ namespace CSG_UI_MVC.Controllers
             }
 
             return View(data);
+
+
+
+
         }
 
 
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        public async Task<Status> Edit(Status task)
+        {
+            string BaseUrl = " https://localhost:44391/api/employee/editemployee";
+            var content = JsonConvert.SerializeObject(task);
+            using (var client = new HttpClient())
+            {
+                var httpResponse = await client.PutAsync($"{BaseUrl}{task.Id}", new StringContent(content, Encoding.Default, "application/json"));
+
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    throw new Exception("Cannot update todo task");
+                }
 
 
+                var createdTask = JsonConvert.DeserializeObject<Status>(await httpResponse.Content.ReadAsStringAsync());
+                return createdTask;
+            }
+        }
 
+
+        public ActionResult Delete(string id)
+        {
+            Status data = new Status();
+
+            using (var client = new HttpClient())
+            {
+
+                var responseTask = client.GetAsync("https://localhost:44391/api/Employee/GetEmployeeId?id=" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Status>();
+                    readTask.Wait();
+
+                    data = readTask.Result;
+                }
+            }
+
+            return View(data);
+
+
+        }
+
+        public ActionResult Details(string id)
+        {
+            Status data = new Status();
+
+            using (var client = new HttpClient())
+            {
+
+                var responseTask = client.GetAsync("https://localhost:44391/api/Employee/GetEmployeeId?id=" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Status>();
+                    readTask.Wait();
+
+                    data = readTask.Result;
+                }
+            }
+
+            return View(data);
+
+        }
 
     }
 }
